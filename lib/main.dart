@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import './state/states.dart';
 import 'page/lobbypage.dart';
 import 'page/miningpage.dart';
+import 'page/upgradepage.dart';
+import 'page/energypage.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Key Counter',
       debugShowCheckedModeBanner: false, // 중요: debugShowCheckedModeBanner 설정 추가
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lime,
       ),
       home: MyHomePage(),
     );
@@ -39,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    controller = TabController(length: 2, vsync: this);
+    controller = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -57,7 +59,12 @@ class _MyHomePageState extends State<MyHomePage>
       ),
       body: TabBarView(
         controller: controller,
-        children: <Widget>[LobbyPage(), MiningPage()],
+        children: <Widget>[
+          LobbyPage(),
+          MiningPage(),
+          EnergyPage(),
+          UpgradePage()
+        ],
       ),
       bottomNavigationBar: TabBar(
         tabs: const <Tab>[
@@ -66,6 +73,12 @@ class _MyHomePageState extends State<MyHomePage>
           ),
           Tab(
             child: Text('MINING'),
+          ),
+          Tab(
+            child: Text('ENERGY'),
+          ),
+          Tab(
+            child: Text('UPGRADE'),
           )
         ],
         controller: controller,
